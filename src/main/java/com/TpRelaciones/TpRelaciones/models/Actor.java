@@ -3,6 +3,8 @@ package com.TpRelaciones.TpRelaciones.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "actores")
 public class Actor {
@@ -18,6 +20,11 @@ public class Actor {
     @Column(nullable = false)
     @NotNull
     private String nacionalidad;
+
+    @ManyToMany(mappedBy = "actores")
+    private Set<Pelicula> peliculas;
+
+
 
     /// Constructor
     public Actor(String nacionalidad, String nombre) {

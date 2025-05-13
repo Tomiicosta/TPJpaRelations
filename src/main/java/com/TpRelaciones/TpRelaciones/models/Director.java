@@ -3,6 +3,8 @@ package com.TpRelaciones.TpRelaciones.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 @Table(name = "directores")
 public class Director {
@@ -14,6 +16,9 @@ public class Director {
     @Column(nullable = false, unique = true)
     @NotNull
     private String nombre;
+
+    @OneToMany(mappedBy = "director")
+    private List<Pelicula> peliculas;
 
     ///  Constructor
     public Director(String nombre) {

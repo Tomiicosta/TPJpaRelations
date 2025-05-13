@@ -3,6 +3,11 @@ package com.TpRelaciones.TpRelaciones.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import org.apache.logging.log4j.util.Lazy;
+import org.hibernate.engine.internal.Cascade;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "peliculas")
@@ -24,6 +29,28 @@ public class Pelicula {
     @NotNull(message = "La duracion no puede ser nula")
     @Positive
     private Integer duracion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "genero_id")
+    private Genero generoPrincipal;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "subgeneros", joinColumns = @JoinColumn (name = "genero_id"),
+            inverseJoinColumns = @JoinColumn(name = "pelicula_id"))
+    private Set<Genero> subGeneros;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "reparto", joinColumns = @JoinColumn(name = "actor_id"),
+            inverseJoinColumns = @JoinColumn(name = "pelicula_id"))
+    private Set<Actor> actores;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "director_id")
+    private Director director;
+
+    @OneToMany(mappedBy = "peliculas", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Resenia> resenias;
+
 
     ///  Constructores
 
