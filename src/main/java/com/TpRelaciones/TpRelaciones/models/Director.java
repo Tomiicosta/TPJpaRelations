@@ -17,6 +17,7 @@ public class Director {
     @NotNull
     private String nombre;
 
+    ///  relacion
     @OneToMany(mappedBy = "director")
     private List<Pelicula> peliculas;
 

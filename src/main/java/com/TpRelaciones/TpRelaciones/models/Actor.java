@@ -21,6 +21,7 @@ public class Actor {
     @NotNull
     private String nacionalidad;
 
+    ///  relacion
     @ManyToMany(mappedBy = "actores")
     private Set<Pelicula> peliculas;
 

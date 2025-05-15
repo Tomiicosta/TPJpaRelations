@@ -3,6 +3,8 @@ package com.TpRelaciones.TpRelaciones.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "generos")
 public class Genero {
@@ -15,6 +17,9 @@ public class Genero {
     @NotNull
     private String nombre;
 
+    ///  relacion
+    @ManyToMany(mappedBy = "subGeneros")
+    private Set<Pelicula> peliculasPorGenero;
 
     /// Constructor
     public Genero(String nombre) {

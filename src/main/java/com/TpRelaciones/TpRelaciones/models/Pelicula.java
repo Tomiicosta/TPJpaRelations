@@ -30,6 +30,8 @@ public class Pelicula {
     @Positive
     private Integer duracion;
 
+    ///  relaciones
+    ///
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genero_id")
     private Genero generoPrincipal;
@@ -58,6 +60,17 @@ public class Pelicula {
         this.titulo = titulo;
         AnioEstreno = anioEstreno;
         this.duracion = duracion;
+    }
+
+    public Pelicula(String titulo, Integer anioEstreno, Integer duracion, Genero generoPrincipal, Set<Genero> subGeneros, Set<Actor> actores, Director director, Set<Resenia> resenias) {
+        this.titulo = titulo;
+        AnioEstreno = anioEstreno;
+        this.duracion = duracion;
+        this.generoPrincipal = generoPrincipal;
+        this.subGeneros = subGeneros;
+        this.actores = actores;
+        this.director = director;
+        this.resenias = resenias;
     }
 
     ///  Getters y Setters
@@ -92,5 +105,45 @@ public class Pelicula {
 
     public void setDuracion(Integer duracion) {
         this.duracion = duracion;
+    }
+
+    public Genero getGeneroPrincipal() {
+        return generoPrincipal;
+    }
+
+    public void setGeneroPrincipal(Genero generoPrincipal) {
+        this.generoPrincipal = generoPrincipal;
+    }
+
+    public Set<Genero> getSubGeneros() {
+        return subGeneros;
+    }
+
+    public void setSubGeneros(Set<Genero> subGeneros) {
+        this.subGeneros = subGeneros;
+    }
+
+    public Set<Actor> getActores() {
+        return actores;
+    }
+
+    public void setActores(Set<Actor> actores) {
+        this.actores = actores;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
+    public Set<Resenia> getResenias() {
+        return resenias;
+    }
+
+    public void setResenias(Set<Resenia> resenias) {
+        this.resenias = resenias;
     }
 }
