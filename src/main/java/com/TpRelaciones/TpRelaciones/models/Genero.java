@@ -26,6 +26,9 @@ public class Genero {
         this.nombre = nombre;
     }
 
+    public Genero() {
+    }
+
     /// Getters y Setters
     public Long getId() {
         return id;

@@ -33,6 +33,9 @@ public class Actor {
         this.nombre = nombre;
     }
 
+    public Actor() {
+    }
+
     ///  Getters y Setters
 
     public Long getId() {

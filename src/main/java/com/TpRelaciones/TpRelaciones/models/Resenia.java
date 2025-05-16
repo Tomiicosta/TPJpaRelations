@@ -34,6 +34,9 @@ public class Resenia {
         this.pelicula = pelicula;
     }
 
+    public Resenia() {
+    }
+
     ///  getters y setters
     public Long getId() {
         return id;

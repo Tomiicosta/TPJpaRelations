@@ -25,6 +25,10 @@ public class Director {
     public Director(String nombre) {
         this.nombre = nombre;
     }
+
+    public Director() {
+    }
+
     /// Getters y Setters
     public Long getId() {
         return id;

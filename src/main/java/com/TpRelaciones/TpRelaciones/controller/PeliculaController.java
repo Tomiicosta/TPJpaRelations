@@ -22,7 +22,8 @@ public class PeliculaController {
     PeliculaService peliculaService;
 
     @PostMapping()
-    public ResponseEntity<?> save(@Valid @RequestBody  Pelicula pelicula){
+    public ResponseEntity<?> save(@RequestBody  Pelicula pelicula){
+        System.out.println(pelicula.getAnioEstreno());
         Pelicula saved = peliculaService.guardarPelicula(pelicula);
         return ResponseEntity.ok(saved);
     }

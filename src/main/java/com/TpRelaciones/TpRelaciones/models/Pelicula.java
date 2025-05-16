@@ -21,7 +21,7 @@ public class Pelicula {
     @NotNull(message = "El titulo no puede ser nulo")
     private String titulo;
 
-    @Column(nullable = false)
+    @Column(name = "anioEstreno", nullable = false)
     @NotNull(message =  "El año de estreno no puede ser nulo")
     private Integer AnioEstreno;
 
@@ -41,7 +41,7 @@ public class Pelicula {
             inverseJoinColumns = @JoinColumn(name = "pelicula_id"))
     private Set<Genero> subGeneros;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = { CascadeType.MERGE})
     @JoinTable(name = "reparto", joinColumns = @JoinColumn(name = "actor_id"),
             inverseJoinColumns = @JoinColumn(name = "pelicula_id"))
     private Set<Actor> actores;
@@ -50,21 +50,27 @@ public class Pelicula {
     @JoinColumn(name = "director_id")
     private Director director;
 
-    @OneToMany(mappedBy = "peliculas", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Resenia> resenias;
 
 
+
     ///  Constructores
+    ///
+    ///
+    public Pelicula() {
+    }
 
     public Pelicula(String titulo, Integer anioEstreno, Integer duracion) {
         this.titulo = titulo;
-        AnioEstreno = anioEstreno;
+        this.AnioEstreno = anioEstreno;
         this.duracion = duracion;
+        System.out.println(anioEstreno);
     }
 
     public Pelicula(String titulo, Integer anioEstreno, Integer duracion, Genero generoPrincipal, Set<Genero> subGeneros, Set<Actor> actores, Director director, Set<Resenia> resenias) {
         this.titulo = titulo;
-        AnioEstreno = anioEstreno;
+        this.AnioEstreno = anioEstreno;
         this.duracion = duracion;
         this.generoPrincipal = generoPrincipal;
         this.subGeneros = subGeneros;
