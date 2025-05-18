@@ -1,5 +1,7 @@
 package com.TpRelaciones.TpRelaciones.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -34,6 +36,7 @@ public class Pelicula {
     ///
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genero_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Genero generoPrincipal;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -48,9 +51,11 @@ public class Pelicula {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "director_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Director director;
 
     @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<Resenia> resenias;
 
 
@@ -65,7 +70,6 @@ public class Pelicula {
         this.titulo = titulo;
         this.AnioEstreno = anioEstreno;
         this.duracion = duracion;
-        System.out.println(anioEstreno);
     }
 
     public Pelicula(String titulo, Integer anioEstreno, Integer duracion, Genero generoPrincipal, Set<Genero> subGeneros, Set<Actor> actores, Director director, Set<Resenia> resenias) {

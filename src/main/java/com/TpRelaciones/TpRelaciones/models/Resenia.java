@@ -1,5 +1,6 @@
 package com.TpRelaciones.TpRelaciones.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -25,6 +26,7 @@ public class Resenia {
 
     @ManyToOne
     @JoinColumn(name = "pelicula_id")
+    @JsonBackReference
     private Pelicula pelicula;
 
     ///  constructor
